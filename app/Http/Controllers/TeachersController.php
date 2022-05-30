@@ -16,7 +16,7 @@ class TeachersController extends Controller
     {
         // Removed token due to it being pushed to public repo.
 
-        $teachers = Http::withToken('')->get('https://api.wonde.com/v1.0/schools/A1930499544/employees')->collect();
+        $teachers = Http::withToken('b86c6b0e2940f0549b932aa361f70ba8a536e8ce')->get('https://api.wonde.com/v1.0/schools/A1930499544/employees/?include=employment_details')->collect();
 
         return view('index', compact('teachers'));
     }

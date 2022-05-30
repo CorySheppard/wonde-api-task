@@ -30,6 +30,7 @@
                         <th>Title</th>
                         <th>Forename</th>
                         <th>Surname</th>
+                        <th>Employment Dates</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,15 @@
                             <td>{{ $teacher['title'] }}</td>
                             <td>{{ $teacher['forename'] }}</td>
                             <td>{{ $teacher['surname'] }}</td>
+                            <td>
+                                {{ \Carbon\Carbon::parse($teacher['employment_details']['data']['employment_start_date']['date'])->timezone($teacher['employment_details']['data']['employment_start_date']['timezone'])->format('d M Y') }}
+                                -
+                                @if($teacher['employment_details']['data']['current'] === true)
+                                    Current
+                                @else
+                                    {{ \Carbon\Carbon::parse($teacher['employment_details']['data']['employment_end_date']['date'])->timezone($teacher['employment_details']['data']['employment_end_date']['timezone'])->format('d M Y') }}
+                                @endif
+                            </td>
                         </tr>
                     @empty
                         <tr colspan="3">
